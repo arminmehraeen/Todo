@@ -1,6 +1,6 @@
 <template>
   <img height="150" width="150" class="d-block mx-auto mt-5" alt="Vue logo"
-       src="https://cdn2.iconfinder.com/data/icons/aami-web-internet/64/aami7-84-512.png">
+       src="./../assets/logo.png">
   <div class="pb-5 text-center">
     <h2>برنامه لیست کارها</h2>
     <p class="lead">
