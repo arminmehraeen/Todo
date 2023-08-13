@@ -239,6 +239,6 @@ a {
 
 @font-face {
   font-family: "mFont";
-  src: url('./fonts/iransansdnlight.ttf') format('woff');
+  src: url('./fonts/font.TTF') ;
 }
 </style>
