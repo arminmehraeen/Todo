@@ -1,5 +1,9 @@
 # Todo
 
+<div>
+  <img src="https://github.com/arminmehraeen/Todo/blob/main/github/picture.png" width="100%">
+</div>
+
 ## Project setup
 ```
 npm install
