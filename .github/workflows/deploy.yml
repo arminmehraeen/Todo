@@ -1,30 +1,54 @@
-name: Deploy to GitHub Pages
+# Name of the workflow
+name: Deploy Todo App to GitHub Pages
 
+# When to run this workflow
 on:
+  # Run on push to main branch
   push:
     branches:
       - main
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
 
+# The jobs that will run
 jobs:
+  # Job name
   build-and-deploy:
+    # Run on latest Ubuntu
     runs-on: ubuntu-latest
+    
+    # Steps to run
     steps:
-      - name: Checkout
+      # Step 1: Get the code
+      - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm install
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install -g npm@latest
 
-      - name: Build
+      # Step 4: Build the project
+      - name: Build project
         run: npm run build
+        env:
+          NODE_ENV: production
 
-      - name: Deploy
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          # The folder the action should deploy
           folder: dist
-          branch: gh-pages 
+          # The branch the action should deploy to
+          branch: gh-pages
+          # The commit message
+          commit-message: "Deploy Todo App" 
