@@ -6,66 +6,79 @@
       <div class="row g-5">
         <!-- New Task Form -->
         <div class="col-lg-6 order-lg-2">
-          <div class="task-container  animate__animated animate__fadeInRight">
+          <div class="task-container animate__animated animate__fadeInRight">
             <div class="task-header">
               <div class="d-flex align-items-center">
                 <div class="header-icon">
                   <i class="bi bi-plus-circle-fill"></i>
                 </div>
-                <h4 class="mb-0">New Task</h4>
+                <div class="header-text">
+                  <h4 class="mb-0">New Task</h4>
+                  <p class="mb-0 text-white-50">Create a new task to organize your work</p>
+                </div>
               </div>
             </div>
             <div class="task-content">
               <form @submit.prevent="add()" class="needs-validation" novalidate>
-                <div class="mb-4">
-                  <label class="form-label">Title</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-pencil-square"></i></span>
-                    <input v-model="title" type="text" class="form-control" :class="{'is-invalid': eTitle}" placeholder="Enter task title">
+                <div class="form-group">
+                  <div class="input-wrapper">
+                    <label class="form-label">Title</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-pencil-square"></i></span>
+                      <input v-model="title" type="text" class="form-control" :class="{'is-invalid': eTitle}" placeholder="Enter task title">
+                    </div>
                     <div class="invalid-feedback">{{ eTitle }}</div>
                   </div>
                 </div>
 
-                <div class="mb-4">
-                  <label class="form-label">Subject</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                    <input v-model="subject" type="text" class="form-control" :class="{'is-invalid': eSubject}" placeholder="Enter task subject">
+                <div class="form-group">
+                  <div class="input-wrapper">
+                    <label class="form-label">Subject</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                      <input v-model="subject" type="text" class="form-control" :class="{'is-invalid': eSubject}" placeholder="Enter task subject">
+                    </div>
                     <div class="invalid-feedback">{{ eSubject }}</div>
                   </div>
                 </div>
 
-                <div class="mb-4">
-                  <label class="form-label">Description</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-text-paragraph"></i></span>
-                    <textarea v-model="body" class="form-control" rows="3" :class="{'is-invalid': eBody}" placeholder="Enter task description"></textarea>
+                <div class="form-group">
+                  <div class="input-wrapper">
+                    <label class="form-label">Description</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-text-paragraph"></i></span>
+                      <textarea v-model="body" class="form-control" rows="3" :class="{'is-invalid': eBody}" placeholder="Enter task description"></textarea>
+                    </div>
                     <div class="invalid-feedback">{{ eBody }}</div>
                   </div>
                 </div>
 
-                <div class="row g-4">
-                  <div class="col-md-6">
-                    <label class="form-label">Importance</label>
-                    <div class="input-group">
-                      <span class="input-group-text"><i class="bi bi-flag"></i></span>
-                      <select v-model="important" class="form-select">
-                        <option v-for="(important, index) in importants" :key="index">{{ important }}</option>
-                      </select>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <div class="input-wrapper">
+                      <label class="form-label">Importance</label>
+                      <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-flag"></i></span>
+                        <select v-model="important" class="form-select">
+                          <option v-for="(important, index) in importants" :key="index">{{ important }}</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Color</label>
-                    <div class="input-group">
-                      <span class="input-group-text"><i class="bi bi-palette"></i></span>
-                      <select v-model="color" class="form-select">
-                        <option v-for="(color, index) in colors" :key="index">{{ color }}</option>
-                      </select>
+                  <div class="form-group col-md-6">
+                    <div class="input-wrapper">
+                      <label class="form-label">Color</label>
+                      <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-palette"></i></span>
+                        <select v-model="color" class="form-select">
+                          <option v-for="(color, index) in colors" :key="index">{{ color }}</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <button class="btn btn-primary w-100 mt-4" type="submit">
+                <button class="btn w-100 text-white mt-4 submit-btn" type="submit">
                   <i class="bi bi-plus-circle me-2"></i>Save Task
                 </button>
               </form>
@@ -390,46 +403,42 @@ body {
   }
 }
 
-.btn {
-  border-radius: var(--border-radius);
-  padding: 0.85rem 1.75rem;
-  font-weight: 600;
-  transition: var(--transition);
-  font-size: 1rem;
-  position: relative;
-  overflow: hidden;
+.submit-btn {
+  background: var(--vue-gradient);
   border: none;
-  backdrop-filter: blur(5px);
-  box-shadow: none;
+  color: white;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+  i {
+    font-size: 0.85rem;
+    color: white;
+    transition: transform 0.2s ease;
+    opacity: 0.9;
   }
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--card-shadow);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.2);
+    background: linear-gradient(135deg, #3aa876 0%, #2c3e50 100%);
     
-    &::before {
-      transform: translateX(0);
+    i {
+      transform: scale(1.1);
+      opacity: 1;
     }
   }
   
-  &.btn-primary {
-    background: var(--vue-gradient);
-    
-    &:hover {
-      background: linear-gradient(135deg, #3aa876 0%, #2c3e50 100%);
-      box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.2);
-    }
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(var(--primary-color-rgb), 0.1);
   }
 }
 
@@ -532,20 +541,140 @@ body {
   z-index: 1;
   transition: var(--transition);
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.05) 0%, rgba(var(--secondary-color-rgb), 0.05) 100%);
-    z-index: -1;
+  .task-header {
+    padding: 2rem;
+    background: var(--vue-gradient);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .header-icon {
+      width: 3rem;
+      height: 3rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+
+      i {
+        font-size: 1.25rem;
+        color: white;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    .header-text {
+      h4 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.25rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        opacity: 0.8;
+      }
+    }
   }
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--hover-shadow);
+  .task-content {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      .input-wrapper {
+        .form-label {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--dark-color);
+          margin-bottom: 0.5rem;
+          opacity: 0.9;
+        }
+
+        .input-group {
+          .input-group-text {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-right: none;
+            color: var(--primary-color);
+            font-size: 1rem;
+            padding: 0.75rem 1rem;
+            transition: var(--transition);
+            border-radius: 12px 0 0 12px;
+          }
+
+          .form-control, .form-select {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: none;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border-radius: 0 12px 12px 0;
+            background: rgba(255, 255, 255, 0.9);
+            
+            &:focus {
+              border-color: var(--primary-color);
+              box-shadow: 0 0 0 4px rgba(var(--primary-color-rgb), 0.1);
+              background: #ffffff;
+            }
+
+            &::placeholder {
+              color: #a0aec0;
+              opacity: 0.7;
+            }
+          }
+
+          &:focus-within {
+            .input-group-text {
+              border-color: var(--primary-color);
+              background: var(--primary-color);
+              color: white;
+            }
+          }
+        }
+
+        .invalid-feedback {
+          font-size: 0.85rem;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -0.75rem;
+      margin-left: -0.75rem;
+
+      .form-group {
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
   }
 }
 
@@ -626,48 +755,51 @@ body {
 
 .task-filters {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
   position: relative;
+  justify-content: flex-start;
+  margin-top: 1rem;
 }
 
 .filter-btn {
-  padding: 1rem 1.75rem;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
   color: white;
-  font-size: 1.1rem;
-  font-weight: 600;
-  display: flex;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   cursor: pointer;
   transition: var(--transition);
-  min-width: 160px;
+  min-width: auto;
   justify-content: center;
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(5px);
+  white-space: nowrap;
 
   i {
-    font-size: 1.3rem;
+    font-size: 1rem;
     transition: var(--transition);
   }
 
   .count {
     background: rgba(255, 255, 255, 0.2);
-    padding: 0.35rem 0.85rem;
-    border-radius: var(--border-radius);
-    font-size: 0.9rem;
-    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    margin-left: 0.25rem;
     transition: var(--transition);
     backdrop-filter: blur(5px);
   }
 
   &:hover {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: var(--card-shadow);
 
     i {
@@ -834,13 +966,28 @@ body {
   }
 
   .task-filters {
-    justify-content: center;
+    gap: 0.35rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .filter-btn {
-    padding: 0.85rem 1.5rem;
-    min-width: 140px;
-    font-size: 1rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    
+    i {
+      font-size: 0.9rem;
+    }
+    
+    .count {
+      padding: 0.2rem 0.4rem;
+      font-size: 0.75rem;
+    }
   }
 
   .task-content {
