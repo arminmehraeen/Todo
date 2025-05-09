@@ -12,6 +12,7 @@ A modern, responsive Todo application built with Vue 3 and Bootstrap 5. This app
 - Modern UI with animations
 - Form validation
 - Sweet alerts for user feedback
+- RTL support for Persian language
 
 ## Technologies Used
 
@@ -37,16 +38,6 @@ npm run build
 npm run lint
 ```
 
-## Deployment
-
-The application is configured for deployment to GitHub Pages. To deploy:
-
-1. Update the `deploy.sh` script with your GitHub username
-2. Run the deployment script:
-```bash
-npm run deploy
-```
-
 ## Project Structure
 
 ```
@@ -61,6 +52,29 @@ todo/
 │   └── main.js
 ├── package.json
 └── README.md
+```
+
+## Development
+
+1. Clone the repository:
+```bash
+git clone https://github.com/arminmehraeen/todo.git
+cd todo
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start development server:
+```bash
+npm run serve
+```
+
+4. Build for production:
+```bash
+npm run build
 ```
 
 ## Contributing
