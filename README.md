@@ -58,7 +58,7 @@ todo/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/arminmehraeen/todo.git
+git clone https://github.com/arminmehraeen/Mi-Todo.git
 cd todo
 ```
 
